@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Gyro-Rond</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #111;
+    }
+    #ball {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #00ffcc;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      transition: background 0.2s;
+    }
+  </style>
+</head>
+<body>
+  <div id="ball"></div>
+
+  <script>
+    const ball = document.getElementById('ball');
+    let x = window.innerWidth / 2;
+    let y = window.innerHeight / 2;
+
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', (event) => {
+        const gamma = event.gamma || 0; // gauche-droite
+        const beta = event.beta || 0;   // avant-arrière
+
+        // On applique un facteur de sensibilité
+        x += gamma * 1.5;
+        y += beta * 1.5;
+
+        // On limite le mouvement aux dimensions de l'écran
+        x = Math.max(0, Math.min(window.innerWidth - 50, x));
+        y = Math.max(0, Math.min(window.innerHeight - 50, y));
+
+        ball.style.left = `${x}px`;
+        ball.style.top = `${y}px`;
+      });
+    } else {
+      alert("Votre appareil ne supporte pas les capteurs gyroscopiques.");
+    }
+  </script>
+</body>
+</html>
