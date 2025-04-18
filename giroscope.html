@@ -16,10 +16,12 @@
 
     #ball {
       position: absolute;
-      width: 50px;
-      height: 50px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       background: #00ffcc;
+      background-size: 150% 150%;
+      background-position: center;
     }
 
     #start-btn {
@@ -51,7 +53,7 @@
     const startBtn = document.getElementById("start-btn");
     const info = document.getElementById("info");
 
-    // Dégradés cycliques
+    // Dégradés cycliques prédéfinis
     const gradients = [
       ["#00A993", "#E68B4A"],
       ["#E68B4A", "#7A1619"],
@@ -74,7 +76,7 @@
     let velX = 0;
     let velY = 0;
 
-    const ballSize = 50;
+    const ballSize = 80;
     const friction = 0.98;
     const accelerationFactor = 0.3;
 
@@ -143,4 +145,3 @@
   </script>
 </body>
 </html>
-
